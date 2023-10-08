@@ -146,4 +146,4 @@ async function test(){
 }
 
 
-export const manager = new ProductManager(); 
+export const productManager = new ProductManager(); 

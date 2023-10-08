@@ -3,7 +3,7 @@ import {engine} from "express-handlebars"
 import { __dirname } from "./utils.js";
 import viewsRouter from "../routes/view.router.js"
 import { Server } from "socket.io";
-import {productMaganer} from "./ProductManager.js"
+import {productManager} from "./ProductManager.js"
 
 const app = express()
 
@@ -29,11 +29,11 @@ const socketServer = new Server(httpServer)
 socketServer.on("connection", async (socket) =>{
     console.log("Cliente conectado")
 
-    const products = await productMaganer.getProducts()
+    const products = await productManager.getProducts()
     socket.emit("products", products)
     
     socket.on("newProducts", async newProduct =>{
-        const product = await productMaganer.addProduct(newProduct)
+        const product = await productManager.addProduct(newProduct)
         console.log(product)
         if(!product){
             socket.emit("Message", "Error al añadir el producto")
