@@ -1,13 +1,16 @@
 import { Router } from "express";
 import {productManager} from "../ProductManager.js"
 
+
+//Creación de rutas
+
 const router = Router()
-const productManager = new productManager (`${__dirname}/db/products.json`)
+//const productManager = new productManager (`${__dirname}/db/products.json`)
 
 router.get("/", async (req, res) =>{
     const products = await productManager.getProducts()
 
-    res.render("Home", {
+    res.render("home", {
         products: products, 
         style: "index.css"
     })
@@ -15,10 +18,10 @@ router.get("/", async (req, res) =>{
 })
 
 
-router.get("/realtimeproducts", async (req, res)=>{
+router.get("/api/views/realtimeproducts", async (req, res)=>{
     const products = await productManager.getProducts()
 
-    res.render("realTimeProducts", {
+    res.render("realtimeproducts", {
         products: products, 
         style: "index.css"
     })

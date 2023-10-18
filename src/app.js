@@ -1,25 +1,27 @@
 import express from "express"
 import {engine} from "express-handlebars"
 import { __dirname } from "./utils.js";
-import viewsRouter from "../routes/view.router.js"
+import viewsRouter from "./routes/view.routes.js"
 import { Server } from "socket.io";
 import {productManager} from "./ProductManager.js"
+import path from "path"
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '/public')));
 
 
 app.engine('handlebars', engine());
+app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'handlebars');
-app.set("views", __dirname + "/views");
+
 
 app.use("/api/views", viewsRouter)
 
-const httpServer = app.listen(8081, ()=>{
-    console.log(`Escuchando al puerto 8081`)
+const httpServer = app.listen(8080, ()=>{
+    console.log(`Escuchando al puerto 8080`)
 })
 
 const socketServer = new Server(httpServer)

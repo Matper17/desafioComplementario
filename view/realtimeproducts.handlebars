@@ -1,14 +1,125 @@
-<h2> Nombre del producto: </h2>
-<p id="name"> </p>
+<style>
+	.table td, .table th { vertical-align: middle; }
+</style>
+<form id="productsForm">
 
-<div id="elements">
-<form id="form">
-    Tittle: <input type="search" name="name" id="tittle">
-    Description: <input type="search" name="name" id="description">
-    Price: <input type="number" name="name" id="price">
-    Search: <input type="submit" value="Enviar" id="search">
+	<div class="d-flex gap-3">
+		<div class="mb-3">
+			<label for="title" class="form-label">Title</label>
+			<input
+				type="text"
+				class="form-control"
+				id="title"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="description" class="form-label">Description</label>
+			<input
+				type="text"
+				class="form-control"
+				id="description"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="price" class="form-label">Price</label>
+			<input
+				min="0"
+				type="number"
+				class="form-control"
+				id="price"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="code" class="form-label">Code</label>
+			<input
+				maxlength="12"
+				minlength="8"
+				type="text"
+				class="form-control"
+				id="code"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="stock" class="form-label">stock</label>
+			<input
+				min="0"
+				type="number"
+				class="form-control"
+				id="stock"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="category" class="form-label">Category</label>
+			<input
+				maxlength="12"
+				minlength="8"
+				type="text"
+				class="form-control"
+				id="category"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+		<div class="mb-3">
+			<label for="thumbnails" class="form-label">Thumbnails</label>
+			<input
+				type="url"
+				class="form-control"
+				id="thumbnails"
+				aria-describedby="emailHelp"
+				required
+			/>
+
+		</div>
+
+	</div>
+
+	<button type="submit" class="btn btn-primary mr-10">Add</button>
+	<a href="/src/ProductManager.js" class="btn btn-secondary">Show all Products</a>
 </form>
-</div>
+<p id="message"></p>
+<div id="productos"></div>
+
+{{#if products.length}}
+	<h2>Lista de Productos</h2>
+	<div class="table-responsive">
+		<table class="table table-dark">
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Foto</th>
+			</tr>
+			{{#each products}}
+				<tr>
+					<td>{{this.title}}</td>
+					<td>${{this.price}}</td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
+{{/if}}
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/src/public/index.js"></script>
