@@ -31,7 +31,7 @@ const socketServer = new Server(httpServer)
 socketServer.on("connection", async (socket) =>{
     console.log("Cliente conectado")
 
-    const products = await productManager.getProducts()
+    const products = await productManager.getProducts({})
     socket.emit("products", products)
     
     socket.on("newProducts", async newProduct =>{

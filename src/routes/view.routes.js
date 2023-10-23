@@ -1,30 +1,25 @@
 import { Router } from "express";
-import {productManager} from "../ProductManager.js"
+import { productManager } from "../ProductManager.js";
 
+// Creación de rutas
+const router = Router();
+//const productManager = new ProductManager(`${__dirname}/db/products.json`);
 
-//Creación de rutas
-
-const router = Router()
-//const productManager = new productManager (`${__dirname}/db/products.json`)
-
-router.get("/", async (req, res) =>{
-    const products = await productManager.getProducts()
-
+router.get("/", async (req, res) => {
+    const products = await productManager.getProducts({});
     res.render("home", {
-        products: products, 
+        products: products,
         style: "index.css"
-    })
+    });
+});
 
-})
-
-
-router.get("/api/views/realtimeproducts", async (req, res)=>{
-    const products = await productManager.getProducts()
-
+router.get("/api/views/realtimeproducts", async (req, res) => {
+    const products = await productManager.getProducts({});
     res.render("realtimeproducts", {
-        products: products, 
+        products: products,
         style: "index.css"
-    })
-})
+    });
+});
 
-export default router; 
+export default router;
+ 
