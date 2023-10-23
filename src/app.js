@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 app.engine('handlebars', engine());
 app.set("views", path.join(__dirname, "views"));
-app.set('views engine', 'handlebars');
+app.set('view engine', 'handlebars');
 
 
 app.use("/api/views", viewsRouter)
