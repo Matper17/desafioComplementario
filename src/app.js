@@ -35,7 +35,7 @@ socketServer.on("connection", async (socket) =>{
     const products = await productManager.getProducts({})
     socket.emit("products", products)
     
-    socket.on("newProducts", async newProduct =>{
+    socket.on("newProduct", async newProduct =>{
         const product = await productManager.addProduct(newProduct)
         console.log(product)
         if(!product){

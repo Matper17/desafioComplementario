@@ -28,7 +28,7 @@ form.onsubmit = (e) => {
     price: inputPrice.value,
     code: inputCode.value,
     stock: inputStock.value,
-    thumbnails: inputThumbnails.value,
+    thumbnail: inputThumbnails.value,
     category: inputCategory.value,
   };
   console.log("hello!")

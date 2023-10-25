@@ -147,4 +147,4 @@ class ProductManager {
 // }
 
 
-export const productManager = new ProductManager(); 
+export const productManager = new ProductManager(path); 
