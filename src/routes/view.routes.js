@@ -1,26 +1,19 @@
 import { Router } from "express";
-import { productManager } from "../ProductManager.js";
+import { usersManager } from "../managers/usersManager.js";
+import {productsManager} from "../managers/productsManager.js"
 
-// Creación de rutas
-const router = Router();
-//const productManager = new ProductManager(`${__dirname}/db/products.json`);
+const router = Router(); 
 
- router.get("/", async (req, res) => {
-    const products = await productManager.getProducts({});
-    res.render("home", {
-        products: products,
-        style: "index.css"
-    });
-});
+router.get("/signup", (req, res)=>{
+    res.render("signup")
+})
 
-//Ruteo de prueba - ERROR 404
-router.get("/realtimeproducts", async (req, res) => {
-    const products = await productManager.getProducts({});
-    res.render("realtimeproducts", {
-        products: products, 
-        style: "index.css"
-    });
-});
+router.get("/home/:idUser", async (req, res)=>{
+    const {idUser} = req.params
+    const user = await usersManager.findById(idUser)
+    const products = await productsManager.findAll()
+    const {first_name, last_name} = user
+    res.render("home", {first_name, last_name, products})
+})
 
-export default router;
- 
+export default router; 
