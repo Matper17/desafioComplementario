@@ -1,4 +1,5 @@
 import express from "express"
+import { Server } from "socket.io";
 import handlebars from "express-handlebars"
 import { __dirname } from "./utils.js";
 import productsRouter from "./routes/products.router.js"
@@ -32,22 +33,18 @@ const httpServer = app.listen(8080, ()=>{
     console.log(`Escuchando al puerto 8080`)
 })
 
-//const socketServer = new Server(httpServer)
+//Conectar - Desconectar (Clientes)
+const socketServer = new Server(httpServer)
 
-//Conectar - Desconectar 
-
-// socketServer.on("connection", async (socket) =>{
-//     console.log("Cliente conectado")
-
-//     const products = await productManager.getProducts({})
-//     socket.emit("products", products)
-    
-//     socket.on("newProduct", async newProduct =>{
-//         const product = await productManager.addProduct(newProduct)
-//         console.log(product)
-//         if(!product){
-//             socket.emit("Message", "Error al añadir el producto")
-//         }
-
-//     })
-// })
+const messages = []
+socketServer.on("connection", (socket) =>{
+    console.log(`El cliente está conectado: ${socket.id}`)
+    socket.on("newUser", (user) =>{
+        socket.broadcast.emit("userConnected", user)
+        socket.emit("connected")
+    })
+    socket.on("message", (infoMessage)=>{
+        messages.push(infoMessage)
+        socketServer.emit("chat", messages)
+    })
+})

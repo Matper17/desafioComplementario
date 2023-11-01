@@ -15,7 +15,18 @@ const productsSchema = new mongoose.Schema({
     }, 
     description: {
         type: String, 
-    }
+    }, 
+    code: {
+        type: String, 
+        required: true 
+    }, 
+    category: {
+        type: String, 
+        required: true
+    }, 
+    thumbnails:[{
+        type: String
+    }], 
 })
 
 export const productsModel = mongoose.model("Products", productsSchema)

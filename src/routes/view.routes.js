@@ -16,4 +16,7 @@ router.get("/home/:idUser", async (req, res)=>{
     res.render("home", {first_name, last_name, products})
 })
 
+router.get("/", (req, res) =>{
+    res.render("chat")
+})
 export default router; 
