@@ -1,0 +1,10 @@
+p{
+    color: red;
+  }
+  .highlighted {
+    background-color: #ffcc00; /* Color de fondo amarillo */
+    border: 2px solid #ff6600; /* Borde naranja */
+    padding: 10px; /* Espaciado interno */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color de texto oscuro */
+  }

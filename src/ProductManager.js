@@ -9,6 +9,7 @@ class ProductManager {
    this.path = `${__dirname}/${path}`; 
   
   }
+  
 //Programación asíncrona
   async getProducts(queryObj) {
     console.log("QueryObj", queryObj)

@@ -1,4 +1,5 @@
-const { default: Swal } = require("sweetalert2")
+//const require = nodeRequire
+//const { default: Swal } = require("sweetalert2")
 
 const socketClient = io()
 const h4Name = document.getElementById("name")
