@@ -20,7 +20,9 @@ class UsersManager{
     }
 
     async findById(id){
-        const response = await usersModel.findById(id).explain("executionStats")
+        const response = await usersModel
+        .findById(id)
+        .explain("executionStats")
         return response
     }
 
