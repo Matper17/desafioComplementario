@@ -7,6 +7,7 @@ import usersRouter from "./routes/users.router.js"
 import viewsRouter from "./routes/view.routes.js"
 import cartsRouter from "./routes/carts.router.js"
 import clientsRouter from "./routes/clients.router.js"
+import bodyParser from "body-parser";
 import path from "path";
 //Data bases
 import "./db/configDB.js"
@@ -18,12 +19,14 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname + '/public')));
+//app.use(express.static(path.join(__dirname + '/public')));
 
 //Handlebars
 app.engine('handlebars', engine());
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/views"));
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Routes
 app.use("/api/products", productsRouter)

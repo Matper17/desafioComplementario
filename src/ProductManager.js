@@ -1,5 +1,6 @@
 import { existsSync, promises } from "fs";
 import { __dirname } from "./utils.js";
+//import {productModel} from "../src/db/models/products.model.js"
 //import { createHash } from "crypto";
 //const fs = require("fs");
 const path = "products.json"
